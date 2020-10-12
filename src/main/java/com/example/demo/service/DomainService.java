@@ -1,6 +1,5 @@
 package com.example.demo.service;
 
-import com.example.demo.model.ConstructionCompany;
 import com.example.demo.model.Domain;
 import com.example.demo.repository.DomainRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,9 +17,8 @@ public class DomainService {
         this.domainRepository = domainRepository;
     }
 
-    public Domain findById(Long id){
-        Optional<Domain> domain = domainRepository.findById(id);
-        return domain.orElseGet(null);
+    public Optional<Domain> findById(Long id){
+        return domainRepository.findById(id);
     }
 
 }
