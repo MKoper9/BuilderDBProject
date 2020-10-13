@@ -5,6 +5,7 @@ import com.example.demo.repository.DomainRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -21,4 +22,12 @@ public class DomainService {
         return domainRepository.findById(id);
     }
 
+    public List<Domain>findAll(){
+        return domainRepository.findAll();
+    }
+
+    public void addDomain(String name){
+        Domain domain = new Domain(name);
+        domainRepository.save(domain);
+    }
 }

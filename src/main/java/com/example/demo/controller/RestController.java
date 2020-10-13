@@ -4,10 +4,12 @@ import com.example.demo.model.Company;
 import com.example.demo.model.Domain;
 import com.example.demo.service.CompanyService;
 import com.example.demo.service.DomainService;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
 
+import org.springframework.web.bind.annotation.PostMapping;
+
+import java.util.List;
 import java.util.Optional;
 
 @org.springframework.web.bind.annotation.RestController
@@ -33,4 +35,20 @@ public class RestController {
         Optional<Company> compOpt = companyService.findById(company_id);
         return compOpt.orElseGet(Company::new);
     }
+
+    @GetMapping("/company/all")
+    public List<Company> findAllCompany(){
+        return companyService.findAll();
+    }
+
+    @GetMapping("/domain/all")
+    public List<Domain> findAllDomain(){
+        return domainService.findAll();
+    }
+/*
+    @PostMapping("/domain/add={name}")
+    public void addDomain(@PathVariable("name")String name){
+        domainService.addDomain(name);
+    }
+ */
 }

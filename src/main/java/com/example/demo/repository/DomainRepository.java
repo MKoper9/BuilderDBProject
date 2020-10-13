@@ -10,4 +10,6 @@ import java.util.Optional;
 public interface DomainRepository extends JpaRepository<Domain, Long> {
 
     Optional<Domain> findById (Long id);
+
+
 }
