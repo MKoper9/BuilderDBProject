@@ -25,5 +25,7 @@ public class CompanyService {
         return companyRepository.findAll();
     }
 
+    public Company findByName(String name){return companyRepository.findByName(name);}
+
 
 }

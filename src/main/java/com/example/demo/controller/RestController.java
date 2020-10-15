@@ -51,4 +51,16 @@ public class RestController {
         domainService.addDomain(name);
     }
  */
+
+    @GetMapping("/hello")
+    public String hello(){
+        return "hello";
+    }
+
+    @GetMapping("/company/name={company}")
+    public Company getCompanyByName(@PathVariable("company") String name){
+        return companyService.findByName(name);
+    }
+
+
 }
