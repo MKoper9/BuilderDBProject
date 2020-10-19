@@ -18,11 +18,11 @@ public class DomainService {
         this.domainRepository = domainRepository;
     }
 
-    public Optional<Domain> findById(Long id){
-        return domainRepository.findById(id);
+    public Domain findById(Long id){
+        return domainRepository.findById(id).orElseGet(null);
     }
 
-    public List<Domain>findAll(){
+    public List<Domain>findAllDomain(){
         return domainRepository.findAll();
     }
 

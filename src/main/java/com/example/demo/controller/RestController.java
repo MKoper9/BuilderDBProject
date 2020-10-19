@@ -4,13 +4,10 @@ import com.example.demo.model.Company;
 import com.example.demo.model.Domain;
 import com.example.demo.service.CompanyService;
 import com.example.demo.service.DomainService;
-import org.springframework.web.bind.annotation.*;
 import org.springframework.beans.factory.annotation.Autowired;
-
-import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
-import java.util.Optional;
 
 @org.springframework.web.bind.annotation.RestController
 public class RestController {
@@ -24,43 +21,54 @@ public class RestController {
         this.companyService = companyService;
     }
 
-    @GetMapping("/domain/id={domain_id}")
+    @PostMapping("company/add")
+    public Company addCompany(@RequestBody Company company){
+        return companyService.saveCompany(company);
+    }
+
+    @GetMapping("/domain/getById/{domain_id}")
     public Domain getDomainById(@PathVariable("domain_id") Long domain_id) {
-        Optional<Domain> domainOpt = domainService.findById(domain_id);
-        return domainOpt.orElseGet(Domain::new);
+        Domain domainOpt = domainService.findById(domain_id);
+        return domainOpt;
     }
 
-    @GetMapping("/company/id={company_id}")
+    @GetMapping("/company/getById/{company_id}")
     public Company getCompanyById(@PathVariable("company_id") Long company_id) {
-        Optional<Company> compOpt = companyService.findById(company_id);
-        return compOpt.orElseGet(Company::new);
+        Company compOpt = companyService.findById(company_id);
+        return compOpt;
     }
 
-    @GetMapping("/company/all")
+    @GetMapping("/company/getAll")
     public List<Company> findAllCompany(){
-        return companyService.findAll();
+        return companyService.findAllCompany();
     }
 
-    @GetMapping("/domain/all")
+    @GetMapping("/domain/getAll")
     public List<Domain> findAllDomain(){
-        return domainService.findAll();
+        return domainService.findAllDomain();
     }
-/*
-    @PostMapping("/domain/add={name}")
-    public void addDomain(@PathVariable("name")String name){
-        domainService.addDomain(name);
-    }
- */
 
     @GetMapping("/hello")
     public String hello(){
         return "hello";
     }
 
-    @GetMapping("/company/name={company}")
+    @GetMapping("/company/getName/{company}")
     public Company getCompanyByName(@PathVariable("company") String name){
         return companyService.findByName(name);
     }
+
+    @DeleteMapping("/company/deleteById/{id}")
+    public String deleteCompanyByName(@PathVariable("id") Long id){
+        return companyService.deleteCompanyById(id);
+    }
+
+    @PutMapping("/company/update")
+    public Company updateCompany(@RequestBody Company company){
+        return companyService.updateCompany(company);
+    }
+
+
 
 
 }
