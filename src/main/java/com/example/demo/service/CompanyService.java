@@ -34,9 +34,8 @@ public class CompanyService {
         return companyRepository.findByName(name);
     }
 
-    public String deleteCompanyById(Long id) {
+    public void deleteCompanyById(Long id) {
         companyRepository.deleteById(id);
-        return "company removed !!: " + id;
     }
 
     public Company updateCompany(Company company) {
