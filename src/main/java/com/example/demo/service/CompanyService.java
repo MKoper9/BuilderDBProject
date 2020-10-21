@@ -39,13 +39,18 @@ public class CompanyService {
     }
 
     public Company updateCompany(Company company) {
-        Company existingCompany = companyRepository.findById(company.getCompanyId()).orElse(null);
-        existingCompany.setCompanyName(company.getCompanyName());
-        existingCompany.setCompanyName(company.getRegion());
-        existingCompany.setCompanyName(company.getCity());
-        existingCompany.setCompanyName(company.getStreet());
-        existingCompany.setCompanyName(company.getZipCode());
-        return companyRepository.save(existingCompany);
+        Optional<Company> companyOpt = companyRepository.findById(company.getCompanyId());
+        if(companyOpt.isPresent()) {
+            Company existingCompany = companyOpt.get();
+            existingCompany.setCompanyName(company.getCompanyName());
+            existingCompany.setCompanyName(company.getRegion());
+            existingCompany.setCompanyName(company.getCity());
+            existingCompany.setCompanyName(company.getStreet());
+            existingCompany.setCompanyName(company.getZipCode());
+            return companyRepository.save(existingCompany);
+        }else {
+            throw new RuntimeException("company not found");
+        }
     }
 
 

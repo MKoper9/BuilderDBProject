@@ -1,6 +1,7 @@
 package com.example.demo.controller;
 
 import com.example.demo.model.Company;
+import com.example.demo.model.Domain;
 import com.example.demo.service.CompanyService;
 import com.example.demo.service.DomainService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -9,6 +10,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
+@RequestMapping(value = "/domain")
 public class DomainRestController {
 
     private DomainService domainService;
@@ -18,40 +20,36 @@ public class DomainRestController {
         this.domainService = domainService;
     }
 
-//    @PostMapping("company/add")
-//    public Company addCompany(@RequestBody Company company){
-//        return companyService.saveCompany(company);
-//    }
-//
-//    @GetMapping("/company/getById/{company_id}")
-//    public Company getCompanyById(@PathVariable("company_id") Long company_id) {
-//        Company compOpt = companyService.findById(company_id);
-//        return compOpt;
-//    }
-//
-//    @GetMapping("/company/getAll")
-//    public List<Company> findAllCompany(){
-//        return companyService.findAllCompany();
-//    }
-//
-//    @GetMapping("/hello")
-//    public String hello(){
-//        return "hello";
-//    }
-//
-//    @GetMapping("/company/getName/{company}")
-//    public Company getCompanyByName(@PathVariable("company") String name){
-//        return companyService.findByName(name);
-//    }
-//
-//    @DeleteMapping("/company/deleteById/{id}")
-//    public String deleteCompanyByName(@PathVariable("id") Long id){
-//        return companyService.deleteCompanyById(id);
-//    }
-//
-//    @PutMapping("/company/update")
-//    public Company updateCompany(@RequestBody Company company){
-//        return companyService.updateCompany(company);
-//    }
+    @PostMapping("/add")
+    public Domain addCompany(@RequestBody Domain domain){
+        return domainService.saveDomain(domain);
+    }
+
+    @GetMapping("/getById/{domain_id}")
+    public Domain getCompanyById(@PathVariable("domain_id") Long domain_id) {
+        Domain domainOpt = domainService.findById(domain_id);
+        return domainOpt;
+    }
+
+    @GetMapping("/getAll")
+    public List<Domain> findAllCompany(){
+        return domainService.findAllDomain();
+    }
+
+    @GetMapping("/getName/{domain}")
+    public Domain getDomainByName(@PathVariable("domain") String name){
+        return domainService.findByName(name);
+    }
+
+    @DeleteMapping("/deleteById/{id}")
+    public String deleteDomainByName(@PathVariable("id") Long id){
+        domainService.deleteCompanyById(id);
+        return "Delete Succesfull";
+    }
+
+    @PutMapping("/update")
+    public Domain updateCompany(@RequestBody Domain domain){
+        return domainService.updateDomain(domain);
+    }
 
 }

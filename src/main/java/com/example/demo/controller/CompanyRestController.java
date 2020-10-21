@@ -34,11 +34,6 @@ public class CompanyRestController {
         return companyService.findAllCompany();
     }
 
-    @GetMapping("/hello")
-    public String hello(){
-        return "hello";
-    }
-
     @GetMapping("/getName/{company}")
     public Company getCompanyByName(@PathVariable(value = "company") String name){
         return companyService.findByName(name);
