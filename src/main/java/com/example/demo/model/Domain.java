@@ -5,6 +5,8 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
+import java.util.HashSet;
+import java.util.Set;
 
 @Entity(name = "domain")
 @Data
@@ -19,6 +21,9 @@ public class Domain {
     private Long domainId;
     @Column(name = "domain_name")
     private String domainName;
+
+    @ManyToMany(mappedBy = "domain")
+    private Set<Company> companies = new HashSet<>();
 
     public Domain(String domainName) {
         this.domainName = domainName;

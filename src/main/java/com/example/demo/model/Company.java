@@ -5,8 +5,10 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
+import java.util.HashSet;
+import java.util.Set;
 
-@Entity(name = "construction_company")
+@Entity
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
@@ -24,11 +26,20 @@ public class Company {
     @Column(name = "zip_code")
     private String zipCode;
 
-    public Company(String companyName, String region, String city, String street, String zipCode) {
+    @ManyToMany
+    @JoinTable(
+            name = "company_domain",
+            joinColumns = @JoinColumn(name = "company_id"),
+            inverseJoinColumns = @JoinColumn(name = "domain_id")
+    )
+    private Set<Domain> domanins = new HashSet<>();
+
+    public Company(String companyName, String region, String city, String street, String zipCode, Set<Domain> domanis) {
         this.companyName = companyName;
         this.region = region;
         this.city = city;
         this.street = street;
         this.zipCode = zipCode;
+        this.domanins = domanis;
     }
 }

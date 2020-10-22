@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Set;
 
 @RequestMapping(value = "/company")
 @org.springframework.web.bind.annotation.RestController
@@ -48,6 +49,11 @@ public class CompanyRestController {
     @PutMapping("/update")
     public Company updateCompany(@RequestBody Company company){
         return companyService.updateCompany(company);
+    }
+
+    @GetMapping("/domainName/{name}")
+    public Set<Company>findCompaniesByDomainName(@PathVariable("name") String name){
+        return companyService.findCompanyByDomainName(name);
     }
 
 }

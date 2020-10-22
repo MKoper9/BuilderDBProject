@@ -1,6 +1,7 @@
 package com.example.demo.service;
 
 import com.example.demo.model.Company;
+import com.example.demo.model.Domain;
 import com.example.demo.repository.CompanyRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -8,6 +9,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Optional;
+import java.util.Set;
 
 @Service
 public class CompanyService {
@@ -51,6 +53,10 @@ public class CompanyService {
         }else {
             throw new RuntimeException("company not found");
         }
+    }
+
+    public Set<Company> findCompanyByDomainName(String name){
+        return companyRepository.findAllByDomainName(name);
     }
 
 
