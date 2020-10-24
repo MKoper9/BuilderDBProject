@@ -55,8 +55,8 @@ public class CompanyService {
         }
     }
 
-    public Set<Company> findCompanyByDomainName(String name){
-        return companyRepository.findAllByDomainName(name);
+    public Set<Company> findCompanyByDomainId(Integer id){
+        return companyRepository.findAllByDomainId(id);
     }
 
 

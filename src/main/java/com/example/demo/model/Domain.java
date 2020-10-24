@@ -22,9 +22,6 @@ public class Domain {
     @Column(name = "domain_name")
     private String domainName;
 
-    @ManyToMany(mappedBy = "domain")
-    private Set<Company> companies = new HashSet<>();
-
     public Domain(String domainName) {
         this.domainName = domainName;
     }

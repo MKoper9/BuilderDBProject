@@ -51,9 +51,9 @@ public class CompanyRestController {
         return companyService.updateCompany(company);
     }
 
-    @GetMapping("/domainName/{name}")
-    public Set<Company>findCompaniesByDomainName(@PathVariable("name") String name){
-        return companyService.findCompanyByDomainName(name);
+    @GetMapping("/domain/{id}")
+    public Set<Company>findCompaniesByDomainName(@PathVariable("id") Integer id){
+        return companyService.findCompanyByDomainId(id);
     }
 
 }
