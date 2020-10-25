@@ -24,23 +24,23 @@ public class CompanyRestController {
         return companyService.saveCompany(company);
     }
 
-    @GetMapping("/getById/{company_id}")
+    @GetMapping("/{company_id}")
     public Company getCompanyById(@PathVariable("company_id") Long company_id) {
         Company compOpt = companyService.findById(company_id);
         return compOpt;
     }
 
-    @GetMapping("/getAll")
+    @GetMapping("/all")
     public List<Company> findAllCompany(){
         return companyService.findAllCompany();
     }
 
-    @GetMapping("/getName/{company}")
+    @GetMapping("/{company}")
     public Company getCompanyByName(@PathVariable(value = "company") String name){
         return companyService.findByName(name);
     }
 
-    @DeleteMapping("/deleteById/{id}")
+    @DeleteMapping("/delete={id}")
     public String deleteCompanyById(@PathVariable(value = "id") Long id){
         companyService.deleteCompanyById(id);
         return "Delete Succesfull";
@@ -51,8 +51,8 @@ public class CompanyRestController {
         return companyService.updateCompany(company);
     }
 
-    @GetMapping("/domain/{id}")
-    public Set<Company>findCompaniesByDomainName(@PathVariable("id") Integer id){
+    @GetMapping("/domain={id}")
+    public Set<Company>findCompaniesByDomainId(@PathVariable("id") Integer id){
         return companyService.findCompanyByDomainId(id);
     }
 

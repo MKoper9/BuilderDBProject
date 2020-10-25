@@ -23,23 +23,23 @@ public class DomainRestController {
         return domainService.saveDomain(domain);
     }
 
-    @GetMapping("/getById/{domain_id}")
+    @GetMapping("/{domain_id}")
     public Domain getCompanyById(@PathVariable("domain_id") Long domain_id) {
         Domain domainOpt = domainService.findById(domain_id);
         return domainOpt;
     }
 
-    @GetMapping("/getAll")
+    @GetMapping("/all")
     public List<Domain> findAllCompany(){
         return domainService.findAllDomain();
     }
 
-    @GetMapping("/getName/{domain}")
+    @GetMapping("/{domain}")
     public Domain getDomainByName(@PathVariable("domain") String name){
         return domainService.findByName(name);
     }
 
-    @DeleteMapping("/deleteById/{id}")
+    @DeleteMapping("/delete={id}")
     public String deleteDomainByName(@PathVariable("id") Long id){
         domainService.deleteCompanyById(id);
         return "Delete Succesfull";
